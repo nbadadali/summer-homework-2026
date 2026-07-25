@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    -webkit-font-smoothing: antialiased;
+  }
+  h1, h2, h3, h4 {
+    font-family: theme("fontFamily.display");
+  }
+  :focus-visible {
+    outline: 3px solid theme("colors.grape.400");
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl px-5 py-3 font-display font-700 text-base
+      transition-transform duration-150 active:translate-y-0.5 active:shadow-none
+      focus-visible:outline focus-visible:outline-4 focus-visible:outline-grape-300 select-none;
+  }
+  .btn-primary {
+    @apply btn bg-sky-500 text-white shadow-pop hover:bg-sky-600;
+  }
+  .btn-secondary {
+    @apply btn bg-white text-ink-800 border-2 border-sky-200 shadow-pop hover:bg-sky-50;
+  }
+  .btn-success {
+    @apply btn bg-grass-500 text-white shadow-pop hover:bg-grass-600;
+  }
+  .btn-warm {
+    @apply btn bg-sunshine-400 text-ink-900 shadow-pop hover:bg-sunshine-500;
+  }
+  .card {
+    @apply rounded-xl3 bg-white shadow-card p-5 sm:p-6;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-3 py-1 text-sm font-700;
+  }
+}
+
+@layer utilities {
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
