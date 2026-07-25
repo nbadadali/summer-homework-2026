@@ -68,8 +68,9 @@ npx netlify-cli dev
 This starts Vite (`:5173`) behind the Netlify dev proxy (`:8888`), which also
 emulates Netlify Blobs locally — no account needed to develop.
 
-Visit **http://localhost:8888**, and log in with any seed account, e.g.
-`Student01` / `Student01`, or `admin` / `BrightRiders2026`.
+Visit **http://localhost:8888**, and log in with any seed account — current
+usernames and passwords are in `src/data/students.js` (not reproduced here to
+avoid this file becoming a second, easily-stale copy of live credentials).
 
 > `npm run dev` alone only starts the Vite frontend — the `/api/*` calls will
 > 404 without `netlify dev` also running the Functions + Blobs emulation.
@@ -89,12 +90,13 @@ Visit **http://localhost:8888**, and log in with any seed account, e.g.
 
 ## Changing passwords / accounts after launch
 
-- **Change the admin password:** log in as `admin`, but there's no self-service
-  admin password change yet — for now, edit `SEED_ADMIN` in
-  `src/data/students.js` **before the very first deploy** (seeding only runs
-  once, the first time the Blobs store is empty). After launch, ask a developer
-  to add an admin-password-reset endpoint, or reset it directly via the Netlify
-  Blobs UI in your site's dashboard.
+- **Change the admin password:** there's no in-app self-service admin password
+  change yet. On an already-deployed site, this requires calling the
+  `admin-reset-password` function directly (with `username: "admin"`) while
+  authenticated as admin — that's how the live password was last updated.
+  `SEED_ADMIN` in `src/data/students.js` is kept in sync for documentation and
+  disaster-recovery re-seeding, but editing it alone does **not** change an
+  already-seeded live site.
 - **Change a student's password:** use "Manage" next to their name in the admin
   **Students** page — no redeploy needed.
 - **Add more than 10 students:** extend `SEED_STUDENTS` in
